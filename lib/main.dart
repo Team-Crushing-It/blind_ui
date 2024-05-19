@@ -154,9 +154,17 @@ class DimensionsWidget extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(5)),
                 dropdownColor: Colors.white,
                 isDense: true,
-                value: "1/4",
-                items: <String>['1/8', '1/4', '1/2', '3/4', '7/8']
-                    .map((String value) {
+                value: '0/8',
+                items: <String>[
+                  '0/8',
+                  '1/8',
+                  '1/4',
+                  '3/8',
+                  '1/2',
+                  '5/8',
+                  '3/4',
+                  '7/8'
+                ].map((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
                     child: Text(value),
