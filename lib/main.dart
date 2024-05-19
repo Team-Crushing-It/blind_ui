@@ -38,63 +38,34 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Container(
           padding: const EdgeInsets.all(3),
-          color: Colors.amber,
+          // color: Colors.amber,
           width: 300,
           height: 500,
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SelectionElements(
-                  elements: ImageConstants.rooms,
-                  title: "Choose Your Room*",
-                ),
-                SelectionElements(
-                  elements: ImageConstants.mountType,
-                  title: "Mount Type*",
-                ),
-                Text(
-                  "Dimensions *",
-                  style: const TextStyle(
-                      fontSize: 15, fontWeight: FontWeight.bold),
-                ),
-                DimensionsWidget(
-                  title: "width",
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                DimensionsWidget(
-                  title: "height",
-                ),
-                SelectionElements(
-                  elements: ImageConstants.covers,
-                  title: "Choose Your Cover*",
-                ),
-                SelectionElements(
-                  elements: ImageConstants.rollDirection,
-                  title: "Chose Fabric Roll Direction",
-                ),
-                SelectionElements(
-                  elements: ImageConstants.liftMethod,
-                  title: "Choose a Lift Method",
-                ),
-                SelectionElements(
-                  elements: ImageConstants.transparentStyle,
-                  title: "Choose a Transparent Style *",
-                ),
-                SelectionElements(
-                  elements: ImageConstants.blackoutStyle,
-                  title: "Choose a Blackout Style *",
-                ),
-
-                Text(
-          "90\$/smthn",
-          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.red),
-        ),
-                
-              ],
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Dimensions *",
+                style:
+                    const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              ),
+              DimensionsWidget(
+                title: "width",
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              DimensionsWidget(
+                title: "height",
+              ),
+              Text(
+                "90\$/smthn",
+                style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.red),
+              ),
+            ],
           ),
         ),
       ),
