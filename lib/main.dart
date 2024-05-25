@@ -35,7 +35,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  // a list with calculator components
   List<Widget> widgetsList = [];
+
+  // it reads json and add widgets accordingly,
+  // name must be changed
   Future<void> readJson() async {
     final String response =
         await rootBundle.loadString('assets/instructions/main.json');
@@ -49,6 +54,10 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
+  /* a very stupidly simplified version for matching components and adding them
+  to the list
+  I'm sure there is a way better way to do this
+  like a static reference that can be in json file itself */
   Widget analyseJson(Map<String, dynamic> element) {
     if (element["componentName"] == "selectionElements") {
       return SelectionElements(
@@ -65,6 +74,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
+    // add all widgets to the widget tree
+    // aka initialize and then build
     WidgetsBinding.instance.addPostFrameCallback((_) {
       readJson();
       setState(() {});
@@ -77,6 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Container(
           padding: const EdgeInsets.all(3),
+          // I know it looks ugly but ... ugliness vibes are cool
           color: Colors.amber,
           width: 300,
           height: 500,
@@ -99,7 +111,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
 
-
+// ! just keeping content
+//! also increasing the codebase size to feel like an expert
 // SelectionElements(
 //                   elements: ImageConstants.rooms,
 //                   title: "Choose Your Room*",
