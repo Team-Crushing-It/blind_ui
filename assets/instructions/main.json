@@ -1,0 +1,23 @@
+{
+    "structure": [
+        {
+            "componentName" : "selectionElements",
+                "title": "choose your screen type",
+                "pictures": [
+                    "american_flag.jpeg"
+                ]
+            
+        },
+        {
+            "componentName" : "dimensionsElements",
+                "title": "add dimensions"
+                
+            
+        }, {
+            "componentName" : "formWidget",
+                "title": "add dimensions"
+                
+            
+        }
+    ]
+}

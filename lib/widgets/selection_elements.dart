@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class SelectionElements extends StatefulWidget {
   final String title;
-  final List<String> elements;
+  final List<dynamic> elements;
   SelectionElements({required this.title, super.key, required this.elements}) {}
 
   @override
@@ -40,8 +40,10 @@ class _SelectionElementsState extends State<SelectionElements> {
               .asMap()
               .map((i, e) => MapEntry(
                   i,
-                  Tooltip(message: e.replaceAll('_', " ").replaceAll(".jpeg", "").toTitleCase(),
-                                      child: Container(
+                  Tooltip(
+                    message: toTitleCase(
+                        e.replaceAll('_', " ").replaceAll(".jpeg", "")),
+                    child: Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(9)),
                           border: Border.all(
@@ -72,8 +74,17 @@ class _SelectionElementsState extends State<SelectionElements> {
   }
 }
 
+//! add later to utils class
+String toCapitalized(String str) {
+  return str.length > 0
+      ? '${str[0].toUpperCase()}${str.substring(1).toLowerCase()}'
+      : '';
+}
 
-extension StringCasingExtension on String {
-  String toCapitalized() => length > 0 ?'${this[0].toUpperCase()}${substring(1).toLowerCase()}':'';
-  String toTitleCase() => replaceAll(RegExp(' +'), ' ').split(' ').map((str) => str.toCapitalized()).join(' ');
+String toTitleCase(String str) {
+  return str
+      .replaceAll(RegExp(' +'), ' ')
+      .split(' ')
+      .map((str) => toCapitalized(str))
+      .join(' ');
 }
