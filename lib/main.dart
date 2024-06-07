@@ -35,31 +35,56 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Container(
-          padding: const EdgeInsets.all(3),
-          // color: Colors.amber,
-          width: 300,
-          height: 500,
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Dimensions *",
-                style:
-                    const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              SelectionElements(
+                elements: ImageConstants.enclosureType,
+                title: "Choose Screen Enclosure Type*",
+              ),
+              SelectionElements(
+                elements: ImageConstants.footerType,
+                title: "Choose Footer Type*",
               ),
               DimensionsWidget(
-                title: "width",
+                title: "Length",
               ),
               SizedBox(
                 height: 5,
               ),
               DimensionsWidget(
-                title: "height",
+                title: "Width",
+              ),
+
+              //or square footage
+
+              SelectionElements(
+                elements: ImageConstants.colorType,
+                title: "Choose Color*",
+              ),
+              SelectionElements(
+                elements: ImageConstants.screenType,
+                title: "Choose Screen Type*",
+              ),
+              SelectionElements(
+                elements: ImageConstants.doorNumType,
+                title: "Choose Number of Doors*",
+              ),
+              SelectionElements(
+                elements: ImageConstants.doggieType,
+                title: "Choose Doggie Doors",
               ),
               Text(
-                "90\$/smthn",
+                "How would you like to receive your estimate?",
+                style:
+                    const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              ),
+
+              Text(
+                "Options + Inputs",
                 style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,

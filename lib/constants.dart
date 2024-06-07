@@ -67,7 +67,13 @@ class ImageConstants {
     kitchen
   ];
 
-  static List<String> mountType = [inside, outside];
+  static List<String> enclosureType = [inside, outside];
+  static List<String> footerType = [inside, outside];
+  static List<String> colorType = [inside, outside];
+  static List<String> screenType = [inside, outside];
+  static List<String> doorNumType = [inside, outside];
+  static List<String> doggieType = [inside, outside];
+
   static List<String> covers = [cassette, noCover];
   static List<String> rollDirection = [standard, reverse];
   static List<String> liftMethod = [corded, cordless, motor];
