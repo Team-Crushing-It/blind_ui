@@ -33,6 +33,55 @@ class ImageConstants {
   static const String ecoTobacco = 'eco_tobacco.jpeg';
   static const String graphite = 'graphite.jpeg';
   static const String inside = 'inside.jpeg';
+
+  ////================================================================
+
+  //types for screen enclosures
+  static const String etype_patio = 'etype_patio.png';
+  static const String etype_pool = 'etype_pool.png';
+  static const String etype_porch = 'etype_porch.png';
+  static const String etype_carport = 'etype_carport.png';
+  static const String etype_gazebo = 'etype_gazebo.png';
+  static const String etype_balcony = 'etype_balcony.png';
+  static const String etype_front = 'etype_front.png';
+
+  static const String ftype_pavers = 'ftype_pavers.png';
+  static const String ftype_slab = 'ftype_slab.png';
+  static const String ftype_add = 'ftype_add.png';
+  static const String ctype_white = 'ctype_white.png';
+  static const String ctype_darkbrown = 'ctype_darkbrown.png';
+  static const String stype_default = 'stype_default.png';
+  static const String stype_nosee = 'stype_nosee.png';
+  static const String stype_animal = 'stype_animal.png';
+  static const String stype_glass = 'stype_glass.png';
+
+  static const String dtype_1 = 'dtype_1.png';
+  static const String dtype_2 = 'dtype_2.png';
+  static const String dtype_3 = 'dtype_3.png';
+  static const String doggietype_yes = 'doggietype_yes.png';
+  static const String doggietype_no = 'doggietype_no.png';
+
+  // pool enclosure
+  // patio enclosure
+  // porch enclosure
+  // carport enclosure
+  // Gazebo enclosure
+  // balcony enclosure
+  // front entrance
+
+  /// Colors
+  /// white
+  /// dark brown
+  ///
+  /// screen type
+  /// Phifer Premium
+  /// Phifer No-See-Um
+  /// Tuff Screen
+  /// Animal
+  /// Glass
+  ///
+  ///
+
   static const String kidsRoom = 'kids_room.jpeg';
   static const String kitchen = 'kitchen.jpeg';
   static const String livingRoom = 'living_room.jpeg';
@@ -67,12 +116,25 @@ class ImageConstants {
     kitchen
   ];
 
-  static List<String> enclosureType = [inside, outside];
-  static List<String> footerType = [inside, outside];
-  static List<String> colorType = [inside, outside];
-  static List<String> screenType = [inside, outside];
-  static List<String> doorNumType = [inside, outside];
-  static List<String> doggieType = [inside, outside];
+  static List<String> enclosureType = [
+    etype_pool,
+    etype_patio,
+    etype_porch,
+    etype_carport,
+    etype_gazebo,
+    etype_balcony,
+    etype_front
+  ];
+  static List<String> footerType = [ftype_pavers, ftype_slab, ftype_add];
+  static List<String> colorType = [ctype_white, ctype_darkbrown];
+  static List<String> screenType = [
+    stype_default,
+    stype_nosee,
+    stype_animal,
+    stype_glass
+  ];
+  static List<String> doorNumType = [dtype_1, dtype_2, dtype_3];
+  static List<String> doggieType = [doggietype_yes, doggietype_no];
 
   static List<String> covers = [cassette, noCover];
   static List<String> rollDirection = [standard, reverse];

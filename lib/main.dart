@@ -49,13 +49,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 elements: ImageConstants.footerType,
                 title: "Choose Footer Type*",
               ),
-              DimensionsWidget(
+              const DimensionsWidget(
                 title: "Length",
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
-              DimensionsWidget(
+              const DimensionsWidget(
                 title: "Width",
               ),
 
@@ -77,23 +77,85 @@ class _MyHomePageState extends State<MyHomePage> {
                 elements: ImageConstants.doggieType,
                 title: "Choose Doggie Doors",
               ),
-              Text(
+              const Text(
                 "How would you like to receive your estimate?",
-                style:
-                    const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
               ),
+              // Column(
+              //   children: [
+              //     const Row(
+              //       children: [
+              //         CheckboxExample(),
+              //         TextField(
+              //           decoration: InputDecoration(
+              //             border: OutlineInputBorder(),
+              //             hintText: 'Enter Email',
+              //           ),
+              //         ),
+              //       ],
+              //     ),
+              //     Row(
+              //       children: [
+              //         CheckboxExample(),
+              //         TextField(
+              //           decoration: InputDecoration(
+              //             border: OutlineInputBorder(),
+              //             hintText: 'Enter Number',
+              //           ),
+              //         ),
+              //       ],
+              //     ),
+              //   ],
+              // ),
 
-              Text(
-                "Options + Inputs",
-                style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.red),
-              ),
+              // Text(
+              //   "Options + Inputs",
+              //   style: const TextStyle(
+              //       fontSize: 20,
+              //       fontWeight: FontWeight.bold,
+              //       color: Colors.red),
+              // ),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class CheckboxExample extends StatefulWidget {
+  const CheckboxExample({super.key});
+
+  @override
+  State<CheckboxExample> createState() => _CheckboxExampleState();
+}
+
+class _CheckboxExampleState extends State<CheckboxExample> {
+  bool isChecked = false;
+
+  @override
+  Widget build(BuildContext context) {
+    Color getColor(Set<MaterialState> states) {
+      const Set<MaterialState> interactiveStates = <MaterialState>{
+        MaterialState.pressed,
+        MaterialState.hovered,
+        MaterialState.focused,
+      };
+      if (states.any(interactiveStates.contains)) {
+        return Colors.blue;
+      }
+      return Colors.red;
+    }
+
+    return Checkbox(
+      checkColor: Colors.white,
+      fillColor: MaterialStateProperty.resolveWith(getColor),
+      value: isChecked,
+      onChanged: (bool? value) {
+        setState(() {
+          isChecked = value!;
+        });
+      },
     );
   }
 }
@@ -116,20 +178,21 @@ class DimensionsWidget extends StatelessWidget {
               title,
               style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             Center(
               child: Tooltip(
                 message: 'Measure from top left corner to bottom left corner.',
-                textStyle: TextStyle(color: Colors.white),
+                textStyle: const TextStyle(color: Colors.white),
                 decoration: BoxDecoration(
                   color: Colors.black,
                   borderRadius: BorderRadius.circular(8),
                 ),
-                waitDuration: Duration(milliseconds: 500),
-                showDuration: Duration(seconds: 2),
-                child: Icon(Icons.help_outline, size: 15, color: Colors.black),
+                waitDuration: const Duration(milliseconds: 500),
+                showDuration: const Duration(seconds: 2),
+                child: const Icon(Icons.help_outline,
+                    size: 15, color: Colors.black),
               ),
             ),
           ],
@@ -162,7 +225,7 @@ class DimensionsWidget extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 30,
             ),
             Container(
@@ -170,13 +233,14 @@ class DimensionsWidget extends StatelessWidget {
                   color: Colors.white, borderRadius: BorderRadius.circular(5)),
               child: DropdownButton<String>(
                 iconEnabledColor: Colors.black,
-                padding: EdgeInsets.symmetric(vertical: 2, horizontal: 10),
-                style: TextStyle(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 2, horizontal: 10),
+                style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
                     color: Colors.black),
-                underline: SizedBox(),
-                borderRadius: BorderRadius.all(Radius.circular(5)),
+                underline: const SizedBox(),
+                borderRadius: const BorderRadius.all(Radius.circular(5)),
                 dropdownColor: Colors.white,
                 isDense: true,
                 value: '0/8',
