@@ -61,16 +61,16 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               const Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: EdgeInsets.only(top: 8.0),
                 child: DimensionsWidget(
-                  title: "Length",
+                  title: "Length (in)",
                 ),
               ),
               const Padding(
                 padding: EdgeInsets.only(
                     top: 8.0, left: 8.0, right: 8.0, bottom: 24),
                 child: DimensionsWidget(
-                  title: "Width",
+                  title: "Width (in))",
                 ),
               ),
 
