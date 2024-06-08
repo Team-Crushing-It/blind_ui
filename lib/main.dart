@@ -1,3 +1,5 @@
+// ignore_for_file: sized_box_for_whitespace
+
 import 'package:flutter/material.dart';
 import 'package:blind_ui/widgets/widgets.dart';
 import 'constants.dart';
@@ -39,6 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
           child: Column(
+            mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SelectionElements(
@@ -49,14 +52,26 @@ class _MyHomePageState extends State<MyHomePage> {
                 elements: ImageConstants.footerType,
                 title: "Choose Footer Type*",
               ),
-              const DimensionsWidget(
-                title: "Length",
+
+              const Padding(
+                padding: EdgeInsets.only(bottom: 8.0),
+                child: Text(
+                  "Dimensions of footer:",
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                ),
               ),
-              const SizedBox(
-                height: 5,
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: DimensionsWidget(
+                  title: "Length",
+                ),
               ),
-              const DimensionsWidget(
-                title: "Width",
+              const Padding(
+                padding: EdgeInsets.only(
+                    top: 8.0, left: 8.0, right: 8.0, bottom: 24),
+                child: DimensionsWidget(
+                  title: "Width",
+                ),
               ),
 
               //or square footage
@@ -77,10 +92,44 @@ class _MyHomePageState extends State<MyHomePage> {
                 elements: ImageConstants.doggieType,
                 title: "Choose Doggie Doors",
               ),
-              const Text(
-                "How would you like to receive your estimate?",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              const Padding(
+                padding: EdgeInsets.only(bottom: 8.0),
+                child: Text(
+                  "How would you like to receive your estimate?",
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                ),
               ),
+
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  const CheckboxExample(),
+                  Container(
+                    width: 400,
+                    child: const TextField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: 'Enter Email',
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  const CheckboxExample(),
+                  Container(
+                    width: 400,
+                    child: const TextField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: 'Enter Phone number',
+                      ),
+                    ),
+                  ),
+                ],
+              )
               // Column(
               //   children: [
               //     const Row(
@@ -144,7 +193,7 @@ class _CheckboxExampleState extends State<CheckboxExample> {
       if (states.any(interactiveStates.contains)) {
         return Colors.blue;
       }
-      return Colors.red;
+      return Colors.grey;
     }
 
     return Checkbox(
