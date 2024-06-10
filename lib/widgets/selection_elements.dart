@@ -6,8 +6,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class SelectionElements extends StatefulWidget {
   final String title;
   final List<SelectOption> elements;
+  final String toUpdate;
 
-  SelectionElements({required this.title, super.key, required this.elements}) {}
+  SelectionElements(
+      {required this.title,
+      super.key,
+      required this.elements,
+      required this.toUpdate});
 
   @override
   State<SelectionElements> createState() => _SelectionElementsState();
@@ -27,60 +32,62 @@ class _SelectionElementsState extends State<SelectionElements> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          widget.title,
-          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(
-          height: 5,
-        ),
-        Wrap(
-          spacing: 4,
-          runSpacing: 5,
-          children: widget.elements
-              .asMap()
-              .map((i, e) => MapEntry(
-                  i,
-                  Tooltip(
-                    message: e.imagepth
-                        .replaceAll('_', " ")
-                        .replaceAll(".jpeg", "")
-                        .toTitleCase(),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(9)),
-                          border: Border.all(
-                              width: 2,
-                              color: selected[i]
-                                  ? Colors.black
-                                  : Colors.transparent)),
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            print(widget.elements[i]);
-                            reset();
-                            selected[i] = true;
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            widget.title,
+            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          Wrap(
+            spacing: 4,
+            runSpacing: 5,
+            children: widget.elements
+                .asMap()
+                .map((i, e) => MapEntry(
+                    i,
+                    Tooltip(
+                      message: e.imagepth
+                          .replaceAll('_', " ")
+                          .replaceAll(".jpeg", "")
+                          .toTitleCase(),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(9)),
+                            border: Border.all(
+                                width: 2,
+                                color: selected[i]
+                                    ? Colors.black
+                                    : Colors.transparent)),
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              print(widget.elements[i]);
+                              reset();
+                              selected[i] = true;
 
-                            context
-                                .read<CalculatorCubitCubit>()
-                                .updateState(widget.elements[i].type);
-                          });
-                        },
-                        child: Image.asset(
-                          "assets/${e.imagepth}",
-                          height: 120,
-                          width: 120,
+                              context.read<CalculatorCubitCubit>().updateState(
+                                  widget.toUpdate, widget.elements[i].type);
+                            });
+                          },
+                          child: Image.asset(
+                            "assets/${e.imagepth}",
+                            height: 120,
+                            width: 120,
+                          ),
                         ),
                       ),
-                    ),
-                  )))
-              .values
-              .toList(),
-        )
-      ],
+                    )))
+                .values
+                .toList(),
+          )
+        ],
+      ),
     );
   }
 }

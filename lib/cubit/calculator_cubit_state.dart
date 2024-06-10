@@ -15,7 +15,7 @@ enum Ftype { pavers, slab }
 
 enum Stype { deff, nosee, tuff, glas, animal }
 
-class CalculatorCubitState {
+class CalculatorCubitState extends Equatable {
   final Etype etype;
   final bool fneed;
   final Ftype ftype;
@@ -26,8 +26,9 @@ class CalculatorCubitState {
   final double dnum;
   final bool doggiedoor;
   final double price;
+  final double unit;
 
-  CalculatorCubitState({
+  const CalculatorCubitState({
     required this.etype,
     required this.fneed,
     required this.ftype,
@@ -37,8 +38,9 @@ class CalculatorCubitState {
     required this.screentype,
     required this.dnum,
     required this.doggiedoor,
-    required this.price,
-  });
+    // required this.price,
+    required this.unit,
+  }) : price = (height * width * unit);
 
   CalculatorCubitState copyWith({
     Etype? etype,
@@ -51,6 +53,7 @@ class CalculatorCubitState {
     double? dnum,
     bool? doggiedoor,
     double? price,
+    double? unit,
   }) {
     return CalculatorCubitState(
       etype: etype ?? this.etype,
@@ -62,7 +65,27 @@ class CalculatorCubitState {
       screentype: screentype ?? this.screentype,
       dnum: dnum ?? this.dnum,
       doggiedoor: doggiedoor ?? this.doggiedoor,
-      price: price ?? this.price,
+      unit: unit ?? this.unit,
     );
   }
+
+  @override
+  String toString() {
+    return 'update: {price: $price';
+  }
+
+  @override
+  List<Object?> get props => [
+        etype,
+        fneed,
+        ftype,
+        width,
+        height,
+        color,
+        screentype,
+        dnum,
+        doggiedoor,
+        price,
+        unit
+      ];
 }

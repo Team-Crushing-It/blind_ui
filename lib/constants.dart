@@ -10,6 +10,11 @@ class SelectOption {
     required this.imagepth,
     required this.type,
   });
+
+  @override
+  String toString() {
+    return 'selection option type: ${type}';
+  }
 }
 
 class ImageConstants {
@@ -57,6 +62,10 @@ class ImageConstants {
   static const String etype_balcony = 'etype_balcony.png';
   static const String etype_front = 'etype_front.png';
 
+  static const String fneed_yes = 'fneed_yes.png';
+
+  static const String fneed_no = 'fneed_no.png';
+
   static const String ftype_pavers = 'ftype_pavers.png';
   static const String ftype_slab = 'ftype_slab.png';
   static const String ftype_add = 'ftype_add.png';
@@ -66,6 +75,7 @@ class ImageConstants {
   static const String stype_nosee = 'stype_nosee.png';
   static const String stype_animal = 'stype_animal.png';
   static const String stype_glass = 'stype_glass.png';
+  static const String stype_tuff = 'stype_tuff.png';
 
   static const String dtype_1 = 'dtype_1.png';
   static const String dtype_2 = 'dtype_2.png';
@@ -134,9 +144,13 @@ class ImageConstants {
     SelectOption(imagepth: etype_porch, type: Etype.patio_screened),
     SelectOption(imagepth: etype_carport, type: Etype.carport),
     SelectOption(imagepth: etype_gazebo, type: Etype.gazebo),
-    SelectOption(imagepth: etype_balcony, type: Etype.pool),
+    SelectOption(imagepth: etype_balcony, type: Etype.balcony),
     SelectOption(imagepth: etype_front, type: Etype.front),
-    SelectOption(imagepth: ftype_slab, type: Ftype.slab)
+  ];
+
+  static List<SelectOption> fNeed = [
+    SelectOption(imagepth: fneed_yes, type: true),
+    SelectOption(imagepth: fneed_no, type: false),
   ];
 
   static List<SelectOption> footerType = [
@@ -151,17 +165,16 @@ class ImageConstants {
 
   static List<SelectOption> screenType = [
     SelectOption(imagepth: stype_default, type: Stype.deff),
-    SelectOption(imagepth: stype_animal, type: Stype.animal),
-    SelectOption(imagepth: stype_glass, type: Stype.glas),
     SelectOption(imagepth: stype_nosee, type: Stype.nosee),
-    SelectOption(imagepth: ctype_darkbrown, type: 'Dark Brown')
+    SelectOption(imagepth: stype_tuff, type: Stype.tuff),
+    SelectOption(imagepth: stype_glass, type: Stype.glas),
+    SelectOption(imagepth: stype_animal, type: Stype.animal),
   ];
 
   static List<SelectOption> doorNumType = [
-    SelectOption(imagepth: stype_default, type: Stype.deff),
-    SelectOption(imagepth: dtype_1, type: dtype_1),
-    SelectOption(imagepth: dtype_2, type: dtype_2),
-    SelectOption(imagepth: dtype_3, type: dtype_3),
+    SelectOption(imagepth: dtype_1, type: 1),
+    SelectOption(imagepth: dtype_2, type: 2),
+    SelectOption(imagepth: dtype_3, type: 3),
   ];
 
   static List<SelectOption> doggieType = [

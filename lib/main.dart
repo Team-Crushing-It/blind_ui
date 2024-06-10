@@ -36,6 +36,7 @@ class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
   final String title;
+  final bool fneed = false;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -44,6 +45,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    final current = context.watch<CalculatorCubitCubit>().state;
+    final fprice = current.price;
+    final fneed = context.watch<CalculatorCubitCubit>().state.fneed;
+    final etype = context.watch<CalculatorCubitCubit>().state.etype;
+    print('etype: $etype');
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -52,18 +59,29 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              //
               SelectionElements(
                 elements: ImageConstants.enclosureType,
                 title: "Choose Screen Enclosure Type*",
+                toUpdate: 'etype',
               ),
               SelectionElements(
-                elements: ImageConstants.footerType,
-                title: "Choose Footer Type*",
+                elements: ImageConstants.fNeed,
+                title: "Do you need a footer*",
+                toUpdate: 'fneed',
               ),
+
+              if (fneed)
+                SelectionElements(
+                  elements: ImageConstants.footerType,
+                  title: "Choose Footer Type*",
+                  toUpdate: 'ftype',
+                ),
+
               const Padding(
                 padding: EdgeInsets.only(bottom: 8.0),
                 child: Text(
-                  "Dimensions of footer:",
+                  "Area of Enclosure:",
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -77,26 +95,31 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: EdgeInsets.only(
                     top: 8.0, left: 8.0, right: 8.0, bottom: 24),
                 child: DimensionsWidget(
-                  title: "Width (in))",
+                  title: "Width (in)",
                 ),
               ),
+
               //or square footage
 
               SelectionElements(
                 elements: ImageConstants.colorType,
                 title: "Choose Color*",
+                toUpdate: 'color',
               ),
               SelectionElements(
                 elements: ImageConstants.screenType,
                 title: "Choose Screen Type*",
+                toUpdate: 'stype',
               ),
               SelectionElements(
                 elements: ImageConstants.doorNumType,
                 title: "Choose Number of Doors*",
+                toUpdate: 'dnum',
               ),
               SelectionElements(
                 elements: ImageConstants.doggieType,
                 title: "Choose Doggie Doors",
+                toUpdate: 'doggietype',
               ),
               const Padding(
                 padding: EdgeInsets.only(bottom: 8.0),
@@ -106,81 +129,17 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
 
-              // Column(
-              //   children: [
-              //     const Row(
-              //       children: [
-              //         CheckboxExample(),
-              //         TextField(
-              //           decoration: InputDecoration(
-              //             border: OutlineInputBorder(),
-              //             hintText: 'Enter Email',
-              //           ),
-              //         ),
-              //       ],
-              //     ),
-              //     Row(
-              //       children: [
-              //         CheckboxExample(),
-              //         TextField(
-              //           decoration: InputDecoration(
-              //             border: OutlineInputBorder(),
-              //             hintText: 'Enter Number',
-              //           ),
-              //         ),
-              //       ],
-              //     ),
-              //   ],
-              // ),
-
-              // Text(
-              //   "Options + Inputs",
-              //   style: const TextStyle(
-              //       fontSize: 20,
-              //       fontWeight: FontWeight.bold,
-              //       color: Colors.red),
-              // ),
+              Padding(
+                padding: EdgeInsets.only(bottom: 8.0),
+                child: Text(
+                  fprice.toString(),
+                  style: TextStyle(fontSize: 72, fontWeight: FontWeight.bold),
+                ),
+              ),
             ],
           ),
         ),
       ),
-    );
-  }
-}
-
-class CheckboxExample extends StatefulWidget {
-  const CheckboxExample({super.key});
-
-  @override
-  State<CheckboxExample> createState() => _CheckboxExampleState();
-}
-
-class _CheckboxExampleState extends State<CheckboxExample> {
-  bool isChecked = false;
-
-  @override
-  Widget build(BuildContext context) {
-    Color getColor(Set<MaterialState> states) {
-      const Set<MaterialState> interactiveStates = <MaterialState>{
-        MaterialState.pressed,
-        MaterialState.hovered,
-        MaterialState.focused,
-      };
-      if (states.any(interactiveStates.contains)) {
-        return Colors.blue;
-      }
-      return Colors.grey;
-    }
-
-    return Checkbox(
-      checkColor: Colors.white,
-      fillColor: MaterialStateProperty.resolveWith(getColor),
-      value: isChecked,
-      onChanged: (bool? value) {
-        setState(() {
-          isChecked = value!;
-        });
-      },
     );
   }
 }
@@ -194,102 +153,55 @@ class DimensionsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            Text(
-              title,
-              style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            Center(
-              child: Tooltip(
-                message: 'Measure from top left corner to bottom left corner.',
-                textStyle: const TextStyle(color: Colors.white),
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                waitDuration: const Duration(milliseconds: 500),
-                showDuration: const Duration(seconds: 2),
-                child: const Icon(Icons.help_outline,
-                    size: 15, color: Colors.black),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Text(
+                title,
+                style:
+                    const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
               ),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-              width: 70,
-              child: const TextField(
-                keyboardType: TextInputType.number,
-                cursorColor: Colors.black,
-                cursorWidth: 1,
-                style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black),
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.all(10),
-                  fillColor: Colors.white,
-                  filled: true,
-                  hoverColor: Colors.transparent,
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black, width: 1),
+              const SizedBox(
+                width: 10,
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                width: 70,
+                child: const TextField(
+                  keyboardType: TextInputType.number,
+                  cursorColor: Colors.black,
+                  cursorWidth: 1,
+                  style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black),
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.all(10),
+                    fillColor: Colors.white,
+                    filled: true,
+                    hoverColor: Colors.transparent,
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black, width: 1),
+                    ),
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black, width: 1),
+                    ),
+                    labelText: null,
+                    isDense: true, // Added this
                   ),
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black, width: 1),
-                  ),
-                  labelText: null,
-                  isDense: true, // Added this
                 ),
               ),
-            ),
-            const SizedBox(
-              width: 30,
-            ),
-            Container(
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(5)),
-              child: DropdownButton<String>(
-                iconEnabledColor: Colors.black,
-                padding:
-                    const EdgeInsets.symmetric(vertical: 2, horizontal: 10),
-                style: const TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black),
-                underline: const SizedBox(),
-                borderRadius: const BorderRadius.all(Radius.circular(5)),
-                dropdownColor: Colors.white,
-                isDense: true,
-                value: '0/8',
-                items: <String>[
-                  '0/8',
-                  '1/8',
-                  '1/4',
-                  '3/8',
-                  '1/2',
-                  '5/8',
-                  '3/4',
-                  '7/8'
-                ].map((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-                onChanged: (_) {},
-              ),
-            )
-          ],
-        ),
-      ],
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
