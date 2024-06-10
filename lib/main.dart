@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.max,
@@ -79,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
 
               const Padding(
-                padding: EdgeInsets.only(bottom: 8.0),
+                padding: EdgeInsets.only(left: 8, bottom: 8.0),
                 child: Text(
                   "Area of Enclosure:",
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
@@ -99,7 +99,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       children: [
                         Container(
                           width: 70,
-                          child: const TextField(
+                          child: TextField(
+                            onChanged: (value) {
+                              context
+                                  .read<CalculatorCubitCubit>()
+                                  .updateState('height', double.parse(value));
+                            },
                             keyboardType: TextInputType.number,
                             cursorColor: Colors.black,
                             cursorWidth: 1,
