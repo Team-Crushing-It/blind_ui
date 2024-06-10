@@ -51,35 +51,29 @@ class _SelectionElementsState extends State<SelectionElements> {
                 .asMap()
                 .map((i, e) => MapEntry(
                     i,
-                    Tooltip(
-                      message: e.imagepth
-                          .replaceAll('_', " ")
-                          .replaceAll(".jpeg", "")
-                          .toTitleCase(),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(9)),
-                            border: Border.all(
-                                width: 2,
-                                color: selected[i]
-                                    ? Colors.black
-                                    : Colors.transparent)),
-                        child: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              print(widget.elements[i]);
-                              reset();
-                              selected[i] = true;
+                    Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(9)),
+                          border: Border.all(
+                              width: 2,
+                              color: selected[i]
+                                  ? Colors.black
+                                  : Colors.transparent)),
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            print(widget.elements[i]);
+                            reset();
+                            selected[i] = true;
 
-                              context.read<CalculatorCubitCubit>().updateState(
-                                  widget.toUpdate, widget.elements[i].type);
-                            });
-                          },
-                          child: Image.asset(
-                            "assets/${e.imagepth}",
-                            height: 120,
-                            width: 120,
-                          ),
+                            context.read<CalculatorCubitCubit>().updateState(
+                                widget.toUpdate, widget.elements[i].type);
+                          });
+                        },
+                        child: Image.asset(
+                          "assets/${e.imagepth}",
+                          height: 120,
+                          width: 120,
                         ),
                       ),
                     )))

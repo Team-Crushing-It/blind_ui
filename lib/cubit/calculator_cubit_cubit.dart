@@ -44,8 +44,13 @@ class CalculatorCubitCubit extends Cubit<CalculatorCubitState> {
         }
 
       case 'fneed':
-        print('fneed');
-        emit(state.copyWith(fneed: update as bool));
+        final output = update as bool;
+        if (output) {
+          emit(state.copyWith(fneed: update));
+        } else {
+          emit(state.copyWith(fneed: update, funit: 0));
+        }
+
       case 'ftype':
         final output = update as Ftype;
         switch (output) {
