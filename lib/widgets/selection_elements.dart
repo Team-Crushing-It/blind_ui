@@ -1,4 +1,6 @@
+import 'package:blind_ui/cubit/calculator_cubit_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SelectionElements extends StatefulWidget {
   final String title;
@@ -40,8 +42,12 @@ class _SelectionElementsState extends State<SelectionElements> {
               .asMap()
               .map((i, e) => MapEntry(
                   i,
-                  Tooltip(message: e.replaceAll('_', " ").replaceAll(".jpeg", "").toTitleCase(),
-                                      child: Container(
+                  Tooltip(
+                    message: e
+                        .replaceAll('_', " ")
+                        .replaceAll(".jpeg", "")
+                        .toTitleCase(),
+                    child: Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(9)),
                           border: Border.all(
@@ -54,6 +60,7 @@ class _SelectionElementsState extends State<SelectionElements> {
                           setState(() {
                             reset();
                             selected[i] = true;
+                            context.read<CalculatorCubitCubit>();
                           });
                         },
                         child: Image.asset(
@@ -72,8 +79,11 @@ class _SelectionElementsState extends State<SelectionElements> {
   }
 }
 
-
 extension StringCasingExtension on String {
-  String toCapitalized() => length > 0 ?'${this[0].toUpperCase()}${substring(1).toLowerCase()}':'';
-  String toTitleCase() => replaceAll(RegExp(' +'), ' ').split(' ').map((str) => str.toCapitalized()).join(' ');
+  String toCapitalized() =>
+      length > 0 ? '${this[0].toUpperCase()}${substring(1).toLowerCase()}' : '';
+  String toTitleCase() => replaceAll(RegExp(' +'), ' ')
+      .split(' ')
+      .map((str) => str.toCapitalized())
+      .join(' ');
 }
