@@ -158,7 +158,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Text(
                   "Instant Quote Price",
                   style: TextStyle(
-                      fontSize: 15,
+                      fontSize: 24,
                       fontWeight: FontWeight.bold,
                       color: Colors.red),
                 ),
