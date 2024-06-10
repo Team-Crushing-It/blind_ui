@@ -52,7 +52,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 elements: ImageConstants.footerType,
                 title: "Choose Footer Type*",
               ),
-
               const Padding(
                 padding: EdgeInsets.only(bottom: 8.0),
                 child: Text(
@@ -61,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               const Padding(
-                padding: EdgeInsets.only(top: 8.0),
+                padding: EdgeInsets.only(top: 8.0, left: 8.0),
                 child: DimensionsWidget(
                   title: "Length (in)",
                 ),
@@ -73,7 +72,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   title: "Width (in))",
                 ),
               ),
-
               //or square footage
 
               SelectionElements(
@@ -95,41 +93,11 @@ class _MyHomePageState extends State<MyHomePage> {
               const Padding(
                 padding: EdgeInsets.only(bottom: 8.0),
                 child: Text(
-                  "How would you like to receive your estimate?",
+                  "Instant Quote Price:",
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 ),
               ),
 
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  const CheckboxExample(),
-                  Container(
-                    width: 400,
-                    child: const TextField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: 'Enter Email',
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  const CheckboxExample(),
-                  Container(
-                    width: 400,
-                    child: const TextField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: 'Enter Phone number',
-                      ),
-                    ),
-                  ),
-                ],
-              )
               // Column(
               //   children: [
               //     const Row(
