@@ -14,7 +14,7 @@ class CalculatorCubitCubit extends Cubit<CalculatorCubitState> {
             width: 0,
             color: '',
             screentype: Stype.tuff,
-            dnum: 0,
+            dnum: 1,
             doggiedoor: false,
             eunit: 25,
             funit: 2,

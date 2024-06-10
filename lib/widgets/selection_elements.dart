@@ -23,7 +23,8 @@ class _SelectionElementsState extends State<SelectionElements> {
   @override
   void initState() {
     super.initState();
-    reset();
+    selected = List.generate(widget.elements.length, (index) => false);
+    selected[0] = true;
   }
 
   void reset() {
@@ -62,7 +63,6 @@ class _SelectionElementsState extends State<SelectionElements> {
                       child: GestureDetector(
                         onTap: () {
                           setState(() {
-                            print(widget.elements[i]);
                             reset();
                             selected[i] = true;
 

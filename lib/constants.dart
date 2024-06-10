@@ -149,8 +149,8 @@ class ImageConstants {
   ];
 
   static List<SelectOption> fNeed = [
-    SelectOption(imagepth: fneed_yes, type: true),
     SelectOption(imagepth: fneed_no, type: false),
+    SelectOption(imagepth: fneed_yes, type: true),
   ];
 
   static List<SelectOption> footerType = [
@@ -179,12 +179,12 @@ class ImageConstants {
 
   static List<SelectOption> doggieType = [
     SelectOption(
-      imagepth: doggietype_yes,
-      type: true,
-    ),
-    SelectOption(
       imagepth: doggietype_no,
       type: false,
+    ),
+    SelectOption(
+      imagepth: doggietype_yes,
+      type: true,
     ),
   ];
 }

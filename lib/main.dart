@@ -59,26 +59,26 @@ class _MyHomePageState extends State<MyHomePage> {
               //
               SelectionElements(
                 elements: ImageConstants.enclosureType,
-                title: "Choose Screen Enclosure Type*",
+                title: "Choose Screen Enclosure Type",
                 toUpdate: 'etype',
               ),
               SelectionElements(
                 elements: ImageConstants.fNeed,
-                title: "Do you need a footer*",
+                title: "Need a Footer?",
                 toUpdate: 'fneed',
               ),
 
               if (current.fneed)
                 SelectionElements(
                   elements: ImageConstants.footerType,
-                  title: "Choose Footer Type*",
+                  title: "Choose Footer Type",
                   toUpdate: 'ftype',
                 ),
 
               const Padding(
                 padding: EdgeInsets.only(left: 8, bottom: 8.0),
                 child: Text(
-                  "Area of Enclosure:",
+                  "Area of Enclosure",
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -135,29 +135,32 @@ class _MyHomePageState extends State<MyHomePage> {
 
               SelectionElements(
                 elements: ImageConstants.colorType,
-                title: "Choose Color*",
+                title: "Choose Color",
                 toUpdate: 'color',
               ),
               SelectionElements(
                 elements: ImageConstants.screenType,
-                title: "Choose Screen Type*",
+                title: "Choose Screen Type",
                 toUpdate: 'stype',
               ),
               SelectionElements(
                 elements: ImageConstants.doorNumType,
-                title: "Choose Number of Doors*",
+                title: "Choose Number of Doors",
                 toUpdate: 'dnum',
               ),
               SelectionElements(
                 elements: ImageConstants.doggieType,
-                title: "Choose Doggie Doors",
+                title: "Doggie Doors",
                 toUpdate: 'doggietype',
               ),
               const Padding(
                 padding: EdgeInsets.only(bottom: 8.0),
                 child: Text(
-                  "Instant Quote Price:",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  "Instant Quote Price",
+                  style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.red),
                 ),
               ),
               if (current.etype == Etype.balcony ||
@@ -168,7 +171,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text(
                     'Call us for the best price',
                     style: const TextStyle(
-                        fontSize: 48, fontWeight: FontWeight.bold),
+                      fontSize: 48,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.red,
+                    ),
                   ),
                 ),
               ] else
@@ -177,7 +183,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text(
                     fprice.toString(),
                     style: const TextStyle(
-                        fontSize: 72, fontWeight: FontWeight.bold),
+                      fontSize: 72,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.red,
+                    ),
                   ),
                 ),
             ],
