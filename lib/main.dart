@@ -85,21 +85,51 @@ class _MyHomePageState extends State<MyHomePage> {
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 8.0, left: 8.0),
-                child: DimensionsWidget(
-                  title: "Length (in)",
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Square Feet',
+                      style: const TextStyle(
+                          fontSize: 12, fontWeight: FontWeight.bold),
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          width: 70,
+                          child: const TextField(
+                            keyboardType: TextInputType.number,
+                            cursorColor: Colors.black,
+                            cursorWidth: 1,
+                            style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black),
+                            decoration: InputDecoration(
+                              contentPadding: EdgeInsets.all(10),
+                              fillColor: Colors.white,
+                              filled: true,
+                              hoverColor: Colors.transparent,
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.black, width: 1),
+                              ),
+                              border: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.black, width: 1),
+                              ),
+                              labelText: null,
+                              isDense: true, // Added this
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(
-                    top: 8.0, left: 8.0, right: 8.0, bottom: 24),
-                child: DimensionsWidget(
-                  title: "Width (in)",
-                ),
-              ),
-
-              //or square footage
 
               SelectionElements(
                 elements: ImageConstants.colorType,
@@ -158,17 +188,12 @@ class DimensionsWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Text(
-                title,
-                style:
-                    const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-            ],
+          Text(
+            title,
+            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(
+            width: 10,
           ),
           Row(
             children: [
