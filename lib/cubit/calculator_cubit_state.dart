@@ -1,7 +1,15 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'calculator_cubit_cubit.dart';
 
-enum Etype { pool, patio_insulated, patio_screened, carport, gazebo, balcony }
+enum Etype {
+  pool,
+  patio_insulated,
+  patio_screened,
+  carport,
+  gazebo,
+  balcony,
+  front
+}
 
 enum Ftype { pavers, slab }
 

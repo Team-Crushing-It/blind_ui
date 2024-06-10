@@ -1,5 +1,17 @@
 import 'dart:core';
 
+import 'package:blind_ui/cubit/calculator_cubit_cubit.dart';
+
+class SelectOption {
+  final String imagepth;
+  final Object type;
+
+  SelectOption({
+    required this.imagepth,
+    required this.type,
+  });
+}
+
 class ImageConstants {
   static const String americanFlag = 'american_flag.jpeg';
   static const String bathroom = 'bathroom.jpeg';
@@ -116,70 +128,51 @@ class ImageConstants {
     kitchen
   ];
 
-  static List<String> enclosureType = [
-    etype_pool,
-    etype_patio,
-    etype_porch,
-    etype_carport,
-    etype_gazebo,
-    etype_balcony,
-    etype_front
-  ];
-  static List<String> footerType = [ftype_pavers, ftype_slab, ftype_add];
-  static List<String> colorType = [ctype_white, ctype_darkbrown];
-  static List<String> screenType = [
-    stype_default,
-    stype_nosee,
-    stype_animal,
-    stype_glass
-  ];
-  static List<String> doorNumType = [dtype_1, dtype_2, dtype_3];
-  static List<String> doggieType = [doggietype_yes, doggietype_no];
-
-  static List<String> covers = [cassette, noCover];
-  static List<String> rollDirection = [standard, reverse];
-  static List<String> liftMethod = [corded, cordless, motor];
-  static List<String> transparentStyle = [
-    ecoChalk,
-    ecoAlabaster,
-    ecoPebblestone,
-    ecoGreystone,
-    ecoGranite,
-    ecoPewter,
-    ecoAsh,
-    ecoEbony,
-    briteWhite,
-    olyster,
-    oysterBeige,
-    olysterPearlGray,
-    beige,
-    beigePearlGray,
-    pearlGray,
-    charcoal,
-    charcoalGray,
-    charcoalChestnut,
-    charcoalAlpaca,
-    ecoTobacco
+  static List<SelectOption> enclosureType = [
+    SelectOption(imagepth: etype_pool, type: Etype.pool),
+    SelectOption(imagepth: etype_patio, type: Etype.patio_insulated),
+    SelectOption(imagepth: etype_porch, type: Etype.patio_screened),
+    SelectOption(imagepth: etype_carport, type: Etype.carport),
+    SelectOption(imagepth: etype_gazebo, type: Etype.gazebo),
+    SelectOption(imagepth: etype_balcony, type: Etype.pool),
+    SelectOption(imagepth: etype_front, type: Etype.front),
+    SelectOption(imagepth: ftype_slab, type: Ftype.slab)
   ];
 
-  static List<String> blackoutStyle = [
-    birch,
-    merino,
-    wheat,
-    canvas,
-    white,
-    sand,
-    mushroom,
-    cocoa,
-    canyon,
-    graphite,
-    porpoise,
-    onyx,
-    whiteBone,
-    whitePlatinum,
-    bone,
-    bonePlatinum,
-    charcoal
+  static List<SelectOption> footerType = [
+    SelectOption(imagepth: ftype_pavers, type: Ftype.pavers),
+    SelectOption(imagepth: ftype_slab, type: Ftype.slab)
+  ];
+
+  static List<SelectOption> colorType = [
+    SelectOption(imagepth: ctype_white, type: 'White'),
+    SelectOption(imagepth: ctype_darkbrown, type: 'Dark Brown')
+  ];
+
+  static List<SelectOption> screenType = [
+    SelectOption(imagepth: stype_default, type: Stype.deff),
+    SelectOption(imagepth: stype_animal, type: Stype.animal),
+    SelectOption(imagepth: stype_glass, type: Stype.glas),
+    SelectOption(imagepth: stype_nosee, type: Stype.nosee),
+    SelectOption(imagepth: ctype_darkbrown, type: 'Dark Brown')
+  ];
+
+  static List<SelectOption> doorNumType = [
+    SelectOption(imagepth: stype_default, type: Stype.deff),
+    SelectOption(imagepth: dtype_1, type: dtype_1),
+    SelectOption(imagepth: dtype_2, type: dtype_2),
+    SelectOption(imagepth: dtype_3, type: dtype_3),
+  ];
+
+  static List<SelectOption> doggieType = [
+    SelectOption(
+      imagepth: doggietype_yes,
+      type: true,
+    ),
+    SelectOption(
+      imagepth: doggietype_no,
+      type: false,
+    ),
   ];
 }
 

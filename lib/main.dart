@@ -1,5 +1,6 @@
 // ignore_for_file: sized_box_for_whitespace
 
+import 'package:blind_ui/app_bloc_observer.dart';
 import 'package:blind_ui/cubit/calculator_cubit_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:blind_ui/widgets/widgets.dart';
@@ -7,7 +8,9 @@ import 'constants.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
-  runApp(const MyApp());
+  BlocOverrides.runZoned(() {
+    runApp(const MyApp());
+  }, blocObserver: AppBlocObserver());
 }
 
 class MyApp extends StatelessWidget {
@@ -23,7 +26,7 @@ class MyApp extends StatelessWidget {
       ),
       home: BlocProvider(
         create: (context) => CalculatorCubitCubit(),
-        child: const MyHomePage(title: 'Flutter Demo Home Page'),
+        child: const MyHomePage(title: 'Estimator'),
       ),
     );
   }

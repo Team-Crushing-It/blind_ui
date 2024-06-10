@@ -20,18 +20,21 @@ class CalculatorCubitCubit extends Cubit<CalculatorCubitState> {
           ),
         );
 
-  void updateState(CalculatorCubitState state) => emit(
-        CalculatorCubitState(
-          etype: state.etype,
-          fneed: state.fneed,
-          ftype: state.ftype,
-          width: state.width,
-          height: state.height,
-          color: state.color,
-          screentype: state.screentype,
-          dnum: state.dnum,
-          doggiedoor: state.doggiedoor,
-          price: state.price,
-        ),
-      );
+  void updateState(CalculatorCubitState state) {
+    print('updated');
+    emit(
+      CalculatorCubitState(
+        etype: state.etype,
+        fneed: state.fneed,
+        ftype: state.ftype,
+        width: state.width,
+        height: state.height,
+        color: state.color,
+        screentype: state.screentype,
+        dnum: state.dnum,
+        doggiedoor: state.doggiedoor,
+        price: state.price,
+      ),
+    );
+  }
 }

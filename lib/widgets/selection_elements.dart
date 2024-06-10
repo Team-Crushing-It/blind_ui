@@ -1,10 +1,12 @@
+import 'package:blind_ui/constants.dart';
 import 'package:blind_ui/cubit/calculator_cubit_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SelectionElements extends StatefulWidget {
   final String title;
-  final List<String> elements;
+  final List<SelectOption> elements;
+
   SelectionElements({required this.title, super.key, required this.elements}) {}
 
   @override
@@ -43,7 +45,7 @@ class _SelectionElementsState extends State<SelectionElements> {
               .map((i, e) => MapEntry(
                   i,
                   Tooltip(
-                    message: e
+                    message: e.imagepth
                         .replaceAll('_', " ")
                         .replaceAll(".jpeg", "")
                         .toTitleCase(),
@@ -58,15 +60,19 @@ class _SelectionElementsState extends State<SelectionElements> {
                       child: GestureDetector(
                         onTap: () {
                           setState(() {
+                            print(widget.elements[i]);
                             reset();
                             selected[i] = true;
-                            context.read<CalculatorCubitCubit>();
+
+                            context
+                                .read<CalculatorCubitCubit>()
+                                .updateState(widget.elements[i].type);
                           });
                         },
                         child: Image.asset(
-                          "assets/$e",
-                          height: 70,
-                          width: 70,
+                          "assets/${e.imagepth}",
+                          height: 120,
+                          width: 120,
                         ),
                       ),
                     ),
