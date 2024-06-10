@@ -47,9 +47,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     final current = context.watch<CalculatorCubitCubit>().state;
     final fprice = current.price;
-    final fneed = context.watch<CalculatorCubitCubit>().state.fneed;
-    final etype = context.watch<CalculatorCubitCubit>().state.etype;
-    print('etype: $etype');
 
     return Scaffold(
       body: Padding(
@@ -71,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 toUpdate: 'fneed',
               ),
 
-              if (fneed)
+              if (current.fneed)
                 SelectionElements(
                   elements: ImageConstants.footerType,
                   title: "Choose Footer Type*",
@@ -90,10 +87,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Square Feet',
-                      style: const TextStyle(
-                          fontSize: 12, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                     ),
                     Row(
                       children: [
@@ -108,11 +105,11 @@ class _MyHomePageState extends State<MyHomePage> {
                             keyboardType: TextInputType.number,
                             cursorColor: Colors.black,
                             cursorWidth: 1,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.black),
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               contentPadding: EdgeInsets.all(10),
                               fillColor: Colors.white,
                               filled: true,
@@ -163,14 +160,26 @@ class _MyHomePageState extends State<MyHomePage> {
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 ),
               ),
-
-              Padding(
-                padding: EdgeInsets.only(bottom: 8.0),
-                child: Text(
-                  fprice.toString(),
-                  style: TextStyle(fontSize: 72, fontWeight: FontWeight.bold),
+              if (current.etype == Etype.balcony ||
+                  current.etype == Etype.front ||
+                  current.etype == Etype.gazebo) ...[
+                const Padding(
+                  padding: const EdgeInsets.only(bottom: 8.0),
+                  child: Text(
+                    'Call us for the best price',
+                    style: const TextStyle(
+                        fontSize: 48, fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ),
+              ] else
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 8.0),
+                  child: Text(
+                    fprice.toString(),
+                    style: const TextStyle(
+                        fontSize: 72, fontWeight: FontWeight.bold),
+                  ),
+                ),
             ],
           ),
         ),

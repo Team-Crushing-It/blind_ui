@@ -10,13 +10,15 @@ class CalculatorCubitCubit extends Cubit<CalculatorCubitState> {
             etype: Etype.pool,
             fneed: false,
             ftype: Ftype.pavers,
-            height: 10,
-            width: 01,
+            height: 0,
+            width: 0,
             color: '',
             screentype: Stype.tuff,
             dnum: 0,
             doggiedoor: false,
-            unit: 1,
+            eunit: 25,
+            funit: 2,
+            sunit: 10,
           ),
         );
 
@@ -24,29 +26,34 @@ class CalculatorCubitCubit extends Cubit<CalculatorCubitState> {
     switch (type) {
       case 'etype':
         final output = update as Etype;
-
         switch (output) {
           case Etype.pool:
-            emit(state.copyWith(etype: Etype.pool, unit: 11));
+            emit(state.copyWith(etype: Etype.pool, eunit: 23));
           case Etype.patio_insulated:
-            emit(state.copyWith(etype: Etype.patio_insulated, unit: 45));
+            emit(state.copyWith(etype: Etype.patio_insulated, eunit: 45));
           case Etype.patio_screened:
-            emit(state.copyWith(etype: Etype.patio_screened, unit: 11));
+            emit(state.copyWith(etype: Etype.patio_screened, eunit: 30));
           case Etype.carport:
-            emit(state.copyWith(etype: Etype.carport, unit: 11));
+            emit(state.copyWith(etype: Etype.carport, eunit: 35));
           case Etype.gazebo:
-            emit(state.copyWith(etype: Etype.gazebo, unit: 11));
+            emit(state.copyWith(etype: Etype.gazebo, eunit: 35));
           case Etype.balcony:
-            emit(state.copyWith(etype: Etype.balcony, unit: 11));
+            emit(state.copyWith(etype: Etype.balcony, eunit: 50));
           case Etype.front:
-            emit(state.copyWith(etype: Etype.front, unit: 11));
+            emit(state.copyWith(etype: Etype.front, eunit: 100));
         }
-        emit(state.copyWith(etype: update as Etype));
+
       case 'fneed':
         print('fneed');
         emit(state.copyWith(fneed: update as bool));
       case 'ftype':
-        emit(state.copyWith(ftype: update as Ftype));
+        final output = update as Ftype;
+        switch (output) {
+          case Ftype.pavers:
+            emit(state.copyWith(ftype: Ftype.pavers, funit: 2));
+          case Ftype.slab:
+            emit(state.copyWith(ftype: Ftype.pavers, funit: 2));
+        }
       case 'height':
         emit(state.copyWith(height: update as double));
       case 'width':
@@ -54,7 +61,19 @@ class CalculatorCubitCubit extends Cubit<CalculatorCubitState> {
       case 'color':
         emit(state.copyWith(color: update as String));
       case 'stype':
-        emit(state.copyWith(screentype: update as Stype));
+        final output = update as Stype;
+        switch (output) {
+          case Stype.deff:
+            emit(state.copyWith(screentype: Stype.deff, sunit: 10));
+          case Stype.nosee:
+            emit(state.copyWith(screentype: Stype.nosee, sunit: 12));
+          case Stype.tuff:
+            emit(state.copyWith(screentype: Stype.tuff, sunit: 20));
+          case Stype.glas:
+            emit(state.copyWith(screentype: Stype.glas, sunit: 25));
+          case Stype.animal:
+            emit(state.copyWith(screentype: Stype.animal, sunit: 30));
+        }
       case 'dnum':
         emit(state.copyWith(dnum: update as double));
       case 'doggietype':

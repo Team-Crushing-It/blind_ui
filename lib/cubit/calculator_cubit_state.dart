@@ -26,7 +26,9 @@ class CalculatorCubitState extends Equatable {
   final double dnum;
   final bool doggiedoor;
   final double price;
-  final double unit;
+  final double eunit;
+  final double funit;
+  final double sunit;
 
   const CalculatorCubitState({
     required this.etype,
@@ -39,8 +41,14 @@ class CalculatorCubitState extends Equatable {
     required this.dnum,
     required this.doggiedoor,
     // required this.price,
-    required this.unit,
-  }) : price = (height * width * unit);
+    required this.eunit,
+    required this.funit,
+    required this.sunit,
+//how much per door?
+  }) : price = ((height * eunit) +
+            (height * funit) +
+            (height * sunit) +
+            (dnum * 50));
 
   CalculatorCubitState copyWith({
     Etype? etype,
@@ -53,7 +61,9 @@ class CalculatorCubitState extends Equatable {
     double? dnum,
     bool? doggiedoor,
     double? price,
-    double? unit,
+    double? eunit,
+    double? funit,
+    double? sunit,
   }) {
     return CalculatorCubitState(
       etype: etype ?? this.etype,
@@ -65,7 +75,9 @@ class CalculatorCubitState extends Equatable {
       screentype: screentype ?? this.screentype,
       dnum: dnum ?? this.dnum,
       doggiedoor: doggiedoor ?? this.doggiedoor,
-      unit: unit ?? this.unit,
+      eunit: eunit ?? this.eunit,
+      funit: funit ?? this.funit,
+      sunit: sunit ?? this.sunit,
     );
   }
 
@@ -86,6 +98,8 @@ class CalculatorCubitState extends Equatable {
         dnum,
         doggiedoor,
         price,
-        unit
+        eunit,
+        funit,
+        sunit,
       ];
 }
