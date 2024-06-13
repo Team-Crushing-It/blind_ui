@@ -1,4 +1,5 @@
 import 'package:blind_ui/calculator/widgets/option_selector.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -222,17 +223,22 @@ class _CalculatorViewState extends State<CalculatorView> {
   }
 }
 
-class Option {
+class Option extends Equatable {
   final String imagepth;
   final Object type;
+  final bool isSelected;
 
   Option({
     required this.imagepth,
     required this.type,
+    this.isSelected = false,
   });
 
   @override
   String toString() {
     return 'selection option type: $type';
   }
+
+  @override
+  List<Object?> get props => [imagepth, type, isSelected];
 }

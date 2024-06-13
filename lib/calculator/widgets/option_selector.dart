@@ -20,6 +20,7 @@ class OptionSelector extends StatefulWidget {
 
 class _OptionSelectorState extends State<OptionSelector> {
   List<bool> selected = [];
+
   @override
   void initState() {
     super.initState();
