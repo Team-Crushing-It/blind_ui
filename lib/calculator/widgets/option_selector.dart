@@ -1,34 +1,34 @@
-import 'package:blind_ui/constants.dart';
-import 'package:blind_ui/cubit/calculator_cubit_cubit.dart';
+import 'package:blind_ui/calculator/cubit/calculator_cubit.dart';
+import 'package:blind_ui/calculator/view/view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SelectionElements extends StatefulWidget {
+class OptionSelector extends StatefulWidget {
   final String title;
-  final List<SelectOption> elements;
+  final List<Option> options;
   final String toUpdate;
 
-  const SelectionElements(
+  const OptionSelector(
       {required this.title,
       super.key,
-      required this.elements,
+      required this.options,
       required this.toUpdate});
 
   @override
-  State<SelectionElements> createState() => _SelectionElementsState();
+  State<OptionSelector> createState() => _OptionSelectorState();
 }
 
-class _SelectionElementsState extends State<SelectionElements> {
+class _OptionSelectorState extends State<OptionSelector> {
   List<bool> selected = [];
   @override
   void initState() {
     super.initState();
-    selected = List.generate(widget.elements.length, (index) => false);
+    selected = List.generate(widget.options.length, (index) => false);
     selected[0] = true;
   }
 
   void reset() {
-    selected = List.generate(widget.elements.length, (index) => false);
+    selected = List.generate(widget.options.length, (index) => false);
   }
 
   @override
@@ -48,13 +48,14 @@ class _SelectionElementsState extends State<SelectionElements> {
           Wrap(
             spacing: 4,
             runSpacing: 5,
-            children: widget.elements
+            children: widget.options
                 .asMap()
                 .map((i, e) => MapEntry(
                     i,
                     Container(
                       decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(Radius.circular(9)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(9)),
                           border: Border.all(
                               width: 2,
                               color: selected[i]
@@ -66,8 +67,8 @@ class _SelectionElementsState extends State<SelectionElements> {
                             reset();
                             selected[i] = true;
 
-                            context.read<CalculatorCubitCubit>().updateState(
-                                widget.toUpdate, widget.elements[i].type);
+                            context.read<CalculatorCubit>().updateState(
+                                widget.toUpdate, widget.options[i].type);
                           });
                         },
                         child: Image.asset(

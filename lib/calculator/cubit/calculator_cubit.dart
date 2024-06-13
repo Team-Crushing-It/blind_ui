@@ -1,12 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-part 'calculator_cubit_state.dart';
+part 'calculator_state.dart';
 
-class CalculatorCubitCubit extends Cubit<CalculatorCubitState> {
-  CalculatorCubitCubit()
+class CalculatorCubit extends Cubit<CalculatorState> {
+  CalculatorCubit()
       : super(
-          const CalculatorCubitState(
+          const CalculatorState(
             etype: Etype.pool,
             fneed: false,
             ftype: Ftype.pavers,

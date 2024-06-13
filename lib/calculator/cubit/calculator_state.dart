@@ -1,5 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-part of 'calculator_cubit_cubit.dart';
+part of 'calculator_cubit.dart';
 
 enum Etype {
   pool,
@@ -15,7 +15,7 @@ enum Ftype { pavers, slab }
 
 enum Stype { deff, nosee, tuff, glas, animal }
 
-class CalculatorCubitState extends Equatable {
+class CalculatorState extends Equatable {
   final Etype etype;
   final bool fneed;
   final Ftype ftype;
@@ -30,7 +30,7 @@ class CalculatorCubitState extends Equatable {
   final double funit;
   final double sunit;
 
-  const CalculatorCubitState({
+  const CalculatorState({
     required this.etype,
     required this.fneed,
     required this.ftype,
@@ -50,7 +50,7 @@ class CalculatorCubitState extends Equatable {
             (height * sunit) +
             (dnum * 50));
 
-  CalculatorCubitState copyWith({
+  CalculatorState copyWith({
     Etype? etype,
     bool? fneed,
     Ftype? ftype,
@@ -65,7 +65,7 @@ class CalculatorCubitState extends Equatable {
     double? funit,
     double? sunit,
   }) {
-    return CalculatorCubitState(
+    return CalculatorState(
       etype: etype ?? this.etype,
       fneed: fneed ?? this.fneed,
       ftype: ftype ?? this.ftype,
