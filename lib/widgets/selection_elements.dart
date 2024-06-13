@@ -8,7 +8,7 @@ class SelectionElements extends StatefulWidget {
   final List<SelectOption> elements;
   final String toUpdate;
 
-  SelectionElements(
+  const SelectionElements(
       {required this.title,
       super.key,
       required this.elements,
@@ -54,7 +54,7 @@ class _SelectionElementsState extends State<SelectionElements> {
                     i,
                     Container(
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(9)),
+                          borderRadius: const BorderRadius.all(Radius.circular(9)),
                           border: Border.all(
                               width: 2,
                               color: selected[i]

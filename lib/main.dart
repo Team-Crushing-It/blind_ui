@@ -167,10 +167,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   current.etype == Etype.front ||
                   current.etype == Etype.gazebo) ...[
                 const Padding(
-                  padding: const EdgeInsets.only(bottom: 8.0),
+                  padding: EdgeInsets.only(bottom: 8.0),
                   child: Text(
                     'Call us for the best price',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 48,
                       fontWeight: FontWeight.bold,
                       color: Colors.red,

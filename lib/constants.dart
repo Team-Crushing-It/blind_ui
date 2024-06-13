@@ -13,7 +13,7 @@ class SelectOption {
 
   @override
   String toString() {
-    return 'selection option type: ${type}';
+    return 'selection option type: $type';
   }
 }
 
