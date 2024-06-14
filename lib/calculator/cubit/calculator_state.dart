@@ -83,7 +83,7 @@ class CalculatorState extends Equatable {
 
   @override
   String toString() {
-    return 'update: {price: $price';
+    return '$etype';
   }
 
   @override
