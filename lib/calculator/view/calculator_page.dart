@@ -45,8 +45,6 @@ class _CalculatorViewState extends State<CalculatorView> {
     Option(imagepth: 'ftype_slab.png', type: Ftype.slab)
   ];
 
-  static List<Option> area = [];
-
   static List<Option> colorType = [
     Option(imagepth: 'ctype_white.png', type: 'White'),
     Option(imagepth: 'ctype_darkbrown.png', type: 'Dark Brown')
@@ -74,7 +72,6 @@ class _CalculatorViewState extends State<CalculatorView> {
   @override
   Widget build(BuildContext context) {
     final current = context.watch<CalculatorCubit>().state;
-    final fprice = current.price;
 
     return Scaffold(
       body: Padding(
@@ -103,7 +100,7 @@ class _CalculatorViewState extends State<CalculatorView> {
                   options: footerType,
                   current: current.ftype,
                 ),
-              AreaInput(),
+              const AreaInput(),
               OptionSelect(
                 title: 'Color',
                 type: 'color',
