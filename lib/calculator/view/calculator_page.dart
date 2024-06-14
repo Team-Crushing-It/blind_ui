@@ -1,5 +1,4 @@
 import 'package:blind_ui/calculator/widgets/option_select.dart';
-import 'package:blind_ui/calculator/widgets/option_selector.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -72,17 +71,6 @@ class _CalculatorViewState extends State<CalculatorView> {
     Option(imagepth: 'doggietype_yes.png', type: true),
   ];
 
-  static List<List<Option>> optionList = [
-    enclosureType,
-    fNeed,
-    footerType,
-    area,
-    colorType,
-    screenType,
-    doorNumType,
-    doggieType
-  ];
-
   @override
   Widget build(BuildContext context) {
     final current = context.watch<CalculatorCubit>().state;
@@ -91,22 +79,58 @@ class _CalculatorViewState extends State<CalculatorView> {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Expanded(
-              child: ListView.builder(
-                itemCount: optionList.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return OptionSelect(
-                    type: '',
-                    index: index,
-                    options: optionList[index],
-                    current: current,
-                  );
-                },
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              OptionSelect(
+                title: 'Enclosure Type',
+                type: 'etype',
+                options: enclosureType,
+                current: current.etype,
               ),
-            ),
-          ],
+              OptionSelect(
+                title: 'Need a footer?',
+                type: 'fneed',
+                options: fNeed,
+                current: current.fneed,
+              ),
+              if (current.fneed)
+                OptionSelect(
+                  title: 'Footer Type',
+                  type: 'ftype',
+                  options: footerType,
+                  current: current.ftype,
+                ),
+              AreaInput(),
+              OptionSelect(
+                title: 'Color',
+                type: 'color',
+                options: colorType,
+                current: current.color,
+              ),
+              OptionSelect(
+                title: 'Screen Type',
+                type: 'stype',
+                options: screenType,
+                current: current.screentype,
+              ),
+              OptionSelect(
+                title: 'Door Count',
+                type: 'dnum',
+                options: doorNumType,
+                current: current.dnum,
+              ),
+              OptionSelect(
+                title: 'Doggie Doors',
+                type: 'doggietype',
+                options: doggieType,
+                current: current.doggiedoor,
+              ),
+              FinalPrice(current: current),
+            ],
+          ),
         ),
       ),
     );
@@ -118,7 +142,7 @@ class Option extends Equatable {
   final Object type;
   final bool isSelected;
 
-  Option({
+  const Option({
     required this.imagepth,
     required this.type,
     this.isSelected = false,
@@ -126,9 +150,115 @@ class Option extends Equatable {
 
   @override
   String toString() {
-    return 'selection option type: $type';
+    return '$type';
   }
 
   @override
   List<Object?> get props => [imagepth, type, isSelected];
+}
+
+class AreaInput extends StatelessWidget {
+  const AreaInput({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Square Feet',
+            style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+          ),
+          Row(
+            children: [
+              Container(
+                width: 70,
+                child: TextField(
+                  onChanged: (value) {
+                    context
+                        .read<CalculatorCubit>()
+                        .updateState('height', double.parse(value));
+                  },
+                  keyboardType: TextInputType.number,
+                  cursorColor: Colors.black,
+                  cursorWidth: 1,
+                  style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black),
+                  decoration: const InputDecoration(
+                    contentPadding: EdgeInsets.all(10),
+                    fillColor: Colors.white,
+                    filled: true,
+                    hoverColor: Colors.transparent,
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black, width: 1),
+                    ),
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black, width: 1),
+                    ),
+                    labelText: null,
+                    isDense: true, // Added this
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class FinalPrice extends StatelessWidget {
+  const FinalPrice({
+    super.key,
+    required this.current,
+  });
+
+  final CalculatorState current;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        const Padding(
+          padding: EdgeInsets.only(bottom: 8.0),
+          child: Text(
+            "Instant Quote Price",
+            style: TextStyle(
+                fontSize: 24, fontWeight: FontWeight.bold, color: Colors.red),
+          ),
+        ),
+        if (current.etype == Etype.balcony ||
+            current.etype == Etype.front ||
+            current.etype == Etype.gazebo) ...[
+          const Padding(
+            padding: EdgeInsets.only(bottom: 8.0),
+            child: Text(
+              'Call us for the best price',
+              style: TextStyle(
+                fontSize: 48,
+                fontWeight: FontWeight.bold,
+                color: Colors.red,
+              ),
+            ),
+          ),
+        ] else
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8.0),
+            child: Text(
+              current.price.toString(),
+              style: const TextStyle(
+                fontSize: 72,
+                fontWeight: FontWeight.bold,
+                color: Colors.red,
+              ),
+            ),
+          ),
+      ],
+    );
+  }
 }
