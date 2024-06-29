@@ -74,6 +74,74 @@ class _CalculatorViewState extends State<CalculatorView> {
     final current = context.watch<CalculatorCubit>().state;
 
     return Scaffold(
+      bottomNavigationBar: Container(
+        padding: EdgeInsets.all(12.0),
+        margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+        decoration: BoxDecoration(
+          color: Colors.teal,
+          borderRadius: BorderRadius.circular(12.0),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black26,
+              blurRadius: 8.0,
+              offset: Offset(0, 2),
+            ),
+          ],
+        ),
+        width: double.maxFinite,
+        height: 100,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              flex: 1,
+              child: Center(
+                child: Text(
+                  "${current.price}\$",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 5,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Enclosure Type: ${current.etype.name.replaceAll("_", " ")}",
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      color: Colors.white70,
+                    ),
+                  ),
+                  Text(
+                    "Screen Type: ${current.screentype.name.replaceAll("_", " ")}",
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      color: Colors.white70,
+                    ),
+                  ),
+                  current.fneed
+                      ? Text(
+                          "Footer Type: ${current.ftype.name.replaceAll("_", " ")}",
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            color: Colors.white70,
+                          ),
+                        )
+                      : Text(""),
+                  // Add more options here
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
