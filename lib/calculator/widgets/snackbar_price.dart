@@ -1,5 +1,6 @@
 import 'package:blind_ui/calculator/cubit/calculator_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 //tel:8776947788
@@ -58,7 +59,7 @@ class SnackbarPrice extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(bottom: 8.0),
                 child: Text(
-                  '\$${current.price.toString()}',
+                  '${NumberFormat.currency(symbol: "\$", decimalDigits: 0).format(current.price)}',
                   style: const TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
