@@ -22,15 +22,8 @@ class SnackbarPrice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Padding(
-          padding: EdgeInsets.only(bottom: 8.0),
-          child: Text(
-            "Instant Quote: ",
-            style: TextStyle(
-                fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
-          ),
-        ),
         if (current.etype == Etype.balcony ||
             current.etype == Etype.front ||
             current.etype == Etype.gazebo) ...[
@@ -39,7 +32,7 @@ class SnackbarPrice extends StatelessWidget {
             child: InkWell(
               onTap: () => _launchUrl('tel:8776947788'),
               child: Text(
-                'Call us for the best price',
+                'Call +1(877)694-7788 for the best estimate',
                 style: TextStyle(
                   decoration: TextDecoration.underline,
                   fontSize: 24,
@@ -50,23 +43,37 @@ class SnackbarPrice extends StatelessWidget {
             ),
           ),
         ] else ...[
-          Padding(
-            padding: const EdgeInsets.only(bottom: 8.0),
-            child: Text(
-              '\$${current.price.toString()}',
-              style: const TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+          Row(
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(bottom: 8.0),
+                child: Text(
+                  "Instant Quote: ",
+                  style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
+                ),
               ),
-            ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: Text(
+                  '\$${current.price.toString()}',
+                  style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
           ),
           Padding(
             padding: EdgeInsets.all(8.0),
             child: InkWell(
               onTap: () => _launchUrl('tel:8776947788'),
               child: Text(
-                '+1 (877) 694- 7788 Call now to lock in this price',
+                'Call +1(877)694-7788 to lock in this price',
                 style: TextStyle(
                   decoration: TextDecoration.underline,
                   fontSize: 24,
