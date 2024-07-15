@@ -36,7 +36,7 @@ class SnackbarPrice extends StatelessWidget {
                 'Call +1(877)694-7788 for the best estimate',
                 style: TextStyle(
                   decoration: TextDecoration.underline,
-                  fontSize: 24,
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
