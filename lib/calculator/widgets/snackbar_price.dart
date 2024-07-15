@@ -86,7 +86,7 @@ class SnackbarPrice extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'lock in this price',
+                    'to lock in this price',
                     style: TextStyle(
                       decoration: TextDecoration.underline,
                       fontSize: 16,
