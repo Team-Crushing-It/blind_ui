@@ -73,14 +73,28 @@ class SnackbarPrice extends StatelessWidget {
             padding: EdgeInsets.all(8.0),
             child: InkWell(
               onTap: () => _launchUrl('tel:8776947788'),
-              child: Text(
-                'Call +1(877)694-7788 to lock in this price',
-                style: TextStyle(
-                  decoration: TextDecoration.underline,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Call +1(877) 694-7788',
+                    style: TextStyle(
+                      decoration: TextDecoration.underline,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Text(
+                    'lock in this price',
+                    style: TextStyle(
+                      decoration: TextDecoration.underline,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
