@@ -69,15 +69,15 @@ class CalculatorCubit extends Cubit<CalculatorState> {
         final output = update as Stype;
         switch (output) {
           case Stype.deff:
-            emit(state.copyWith(screentype: Stype.deff, sunit: 10));
+            emit(state.copyWith(screentype: Stype.deff, sunit: 24));
           case Stype.nosee:
-            emit(state.copyWith(screentype: Stype.nosee, sunit: 12));
+            emit(state.copyWith(screentype: Stype.nosee, sunit: 24));
           case Stype.tuff:
-            emit(state.copyWith(screentype: Stype.tuff, sunit: 20));
+            emit(state.copyWith(screentype: Stype.tuff, sunit: 24));
           case Stype.glas:
-            emit(state.copyWith(screentype: Stype.glas, sunit: 25));
+            emit(state.copyWith(screentype: Stype.glas, sunit: 24));
           case Stype.animal:
-            emit(state.copyWith(screentype: Stype.animal, sunit: 30));
+            emit(state.copyWith(screentype: Stype.animal, sunit: 24));
         }
       case 'dnum':
         emit(state.copyWith(dnum: update as double));
