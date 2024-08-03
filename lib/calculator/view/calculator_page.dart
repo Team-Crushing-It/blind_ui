@@ -144,7 +144,6 @@ class _CalculatorViewState extends State<CalculatorView> {
                 options: doggieType,
                 current: current.doggiedoor,
               ),
-              FinalPrice(current: current),
             ],
           ),
         ),
